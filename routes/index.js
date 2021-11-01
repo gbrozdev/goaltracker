@@ -12,7 +12,6 @@ router.get('/', async function (req, res) {
     let Q = Quote.getQuote()
     let noAQ = Quote.getQuote({ author: false })
     let RQ = Quote.getRandomQuote({ author: true })
-
     res.render('index', { Q, noAQ, RQ });
 });
 
@@ -21,13 +20,22 @@ router.get('/notes', async function (req, res) {
     res.render('notes/notes', { notes });
 });
 
+router.get('/delete/:id', async function (req, res) {
+    let id = req.params.id
+    await db.get().collection('notes').deleteOne({ _id: ObjectId(id)})
+    res.redirect('/notes');
+});
 
 router.get('/links', function (req, res) {
     res.render('links/links');
 });
 
-//products
 
+router.get('/note/:id', async function (req, res) {
+    let id = req.params.id
+    let note = await db.get().collection('notes').findOne({ _id: ObjectId(id) })
+    res.render('notes/note', { note });
+});
 
 
 
