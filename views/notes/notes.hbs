@@ -1,0 +1,50 @@
+<div class="container">
+
+    <div class="top">
+        <a class="btn btn-success" href="/newnote">Add+</a>
+    </div>
+
+    <div class="note-div">
+        {{#each notes}}
+        <div class="card  " style="width: 90%; max-height: 10rem; overflow-y: hidden; padding: 5px; margin: 10px; ">
+            <a href="/note/{{this._id}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.title}}</h5>
+                </div>
+            </a>
+        </div>
+        {{/each}}
+    </div>
+
+</div>
+
+<style>
+    .card-body {
+        height: 20px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .card-title {
+        color: black;
+    }
+
+    .note-div {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .top {
+        position: fixed;
+        top: 60px;
+        right: 10px;
+    }
+
+    .top a {
+        font-family: Arial, sans-serif;
+        font-weight: 600;
+    }
+</style>
